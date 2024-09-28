@@ -305,3 +305,4 @@ https://graphviz-web-429380797965.us-east1.run.app/diagram.png?dot=digraph Run {
 9. [Cloud Run - 実行環境](https://cloud.google.com/run/docs/about-execution-environments?hl=ja)
 10. [カスタムイメージを作ってCloud Runで動かす方法のチュートリアル](https://cloud.google.com/run/docs/tutorials/system-packages?hl=ja)
 11. [Artifact Registry コンソール画面](https://console.cloud.google.com/artifacts/browse/lyrical-art-273306?hl=ja&project=lyrical-art-273306)
+12. [Cloud Run での Node.js ジョブのビルドと作成](https://cloud.google.com/run/docs/quickstarts/jobs/build-create-nodejs?hl=ja)
