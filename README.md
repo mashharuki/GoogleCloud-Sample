@@ -309,3 +309,5 @@ https://graphviz-web-429380797965.us-east1.run.app/diagram.png?dot=digraph Run {
 13. [GitHub - GoogleCloudPlatform/cloud-run-samples](https://github.com/GoogleCloudPlatform/cloud-run-samples)
 14. [Zenn - Cloud Run ジョブ ことはじめ](https://zenn.dev/google_cloud_jp/articles/cloudrun-jobs-basic)
 15. [GitHub - google-cloud-japan/gcp-getting-started-cloudrun](https://github.com/google-cloud-japan/gcp-getting-started-cloudrun)
+16. [FireStore ドキュメント](https://firebase.google.com/docs/firestore?hl=ja)
+17. [Firebase CLI ドキュメント](https://firebase.google.com/docs/cli?hl=ja)
