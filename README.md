@@ -306,3 +306,6 @@ https://graphviz-web-429380797965.us-east1.run.app/diagram.png?dot=digraph Run {
 10. [カスタムイメージを作ってCloud Runで動かす方法のチュートリアル](https://cloud.google.com/run/docs/tutorials/system-packages?hl=ja)
 11. [Artifact Registry コンソール画面](https://console.cloud.google.com/artifacts/browse/lyrical-art-273306?hl=ja&project=lyrical-art-273306)
 12. [Cloud Run での Node.js ジョブのビルドと作成](https://cloud.google.com/run/docs/quickstarts/jobs/build-create-nodejs?hl=ja)
+13. [GitHub - GoogleCloudPlatform/cloud-run-samples](https://github.com/GoogleCloudPlatform/cloud-run-samples)
+14. [Zenn - Cloud Run ジョブ ことはじめ](https://zenn.dev/google_cloud_jp/articles/cloudrun-jobs-basic)
+15. [GitHub - google-cloud-japan/gcp-getting-started-cloudrun](https://github.com/google-cloud-japan/gcp-getting-started-cloudrun)
