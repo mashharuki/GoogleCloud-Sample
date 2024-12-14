@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { Web3AuthNoModal } from "@web3auth/no-modal";
-import { WALLET_ADAPTERS, CHAIN_NAMESPACES, WEB3AUTH_NETWORK, UX_MODE } from "@web3auth/base";
-import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
-import { auth } from "./FireBaseConfig";
 import { AuthAdapter } from "@web3auth/auth-adapter";
+import { CHAIN_NAMESPACES, UX_MODE, WALLET_ADAPTERS, WEB3AUTH_NETWORK } from "@web3auth/base";
+import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
+import { Web3AuthNoModal } from "@web3auth/no-modal";
 import { GoogleAuthProvider, TwitterAuthProvider, signInWithPopup } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { auth } from "./FireBaseConfig";
 
 import "./App.css";
 // import RPC from "./evm.ethers";
@@ -92,8 +92,8 @@ function App() {
         extraLoginOptions: {
           id_token: idToken,
           verifierIdField: "sub",
-          // domain: "http://localhost:3000"
-          domain: "https://didactic-fishstick-jq45xjg95w4c55xw-5173.app.github.dev",
+          domain: "http://localhost:3000"
+          // domain: "https://didactic-fishstick-jq45xjg95w4c55xw-5173.app.github.dev",
         },
       });
     } catch (err) {
