@@ -311,3 +311,6 @@ https://graphviz-web-429380797965.us-east1.run.app/diagram.png?dot=digraph Run {
 15. [GitHub - google-cloud-japan/gcp-getting-started-cloudrun](https://github.com/google-cloud-japan/gcp-getting-started-cloudrun)
 16. [FireStore ドキュメント](https://firebase.google.com/docs/firestore?hl=ja)
 17. [Firebase CLI ドキュメント](https://firebase.google.com/docs/cli?hl=ja)
+18. [Google Cloud Web3 Platform](https://cloud.google.com/application/web3/)
+19. [BigQuery と Subsquid で Web3 データにアクセスする](https://cloud.google.com/blog/ja/products/data-analytics/how-to-unlock-web3-data-with-bigquery-and-subsquid)
+20. [Learn the potential of Web3](https://cloud.google.com/application/web3/learn)
