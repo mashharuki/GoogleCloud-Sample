@@ -1,5 +1,5 @@
-# CloudRun-Sample
-CloudRunを調査・学習するためのリポジトリです。
+# GoogleCloud-Sample
+GoogleCloudを調査・学習するためのリポジトリです。
 
 ## Cloud Runとは何か?
 
