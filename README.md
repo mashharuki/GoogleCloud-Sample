@@ -314,3 +314,6 @@ https://graphviz-web-429380797965.us-east1.run.app/diagram.png?dot=digraph Run {
 18. [Google Cloud Web3 Platform](https://cloud.google.com/application/web3/)
 19. [BigQuery と Subsquid で Web3 データにアクセスする](https://cloud.google.com/blog/ja/products/data-analytics/how-to-unlock-web3-data-with-bigquery-and-subsquid)
 20. [Learn the potential of Web3](https://cloud.google.com/application/web3/learn)
+21. [BigQuery API](https://cloud.google.com/bigquery/docs/reference/rest/?apix=true)
+22. [Ethereum Dataset Demo](https://lookerstudio.google.com/reporting/b096fec8-9139-4782-99d2-4f95f8df06c9/page/p_iwchky6d5c)
+23. [Integrate Firebase with Web3Auth Plug and Play No Modal SDK](https://web3auth.io/docs/guides/firebase)

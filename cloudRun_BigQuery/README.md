@@ -71,3 +71,36 @@ Firebase設定のアプリケーションへの埋め込み
 ```bash
 
 ```
+
+## 別のBigQueryのサンプル例
+
+以下のコースにチャレンジ
+
+[Public Blockchain Datasets Available in BigQuery](https://cloud.google.com/application/web3/discover/products/public-blockchain-datasets-available-in-bigquery)
+
+public datasetであるイーサリアムのブロック情報を取得するクエリ
+
+```sql
+WITH
+     withdrawals AS (
+     SELECT
+       w.amount_lossless AS amount,
+       DATE(b.block_timestamp) AS block_date
+     FROM
+       bigquery-public-data.goog_blockchain_ethereum_mainnet_us.blocks b
+     CROSS JOIN
+       UNNEST(withdrawals) AS w
+     WHERE
+       DATE(b.block_timestamp) BETWEEN CURRENT_DATE() - 14
+       AND CURRENT_DATE())
+   SELECT
+     block_date,
+     bqutil.fn.bignumber_div(bqutil.fn.bignumber_sum(ARRAY_AGG(amount)),
+      "1000000000") AS eth_withdrawn
+   FROM
+     withdrawals
+   GROUP BY
+     1
+   ORDER BY
+     1 DESC;
+```
