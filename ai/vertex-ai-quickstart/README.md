@@ -43,3 +43,39 @@
     ```bash
     bun run chat
     ```
+
+- 画像を渡して出力させるサンプルコード
+
+    ```bash
+    bun run multiPartContent
+    ```
+
+- functionCalling
+
+    ```bash
+    bun run functionCallingChat
+    ```
+
+- functionCalling(ストリーミングあり)
+
+    ```bash
+    bun run functionCallingGenerateContentStream
+    ```
+
+- トークン数を数える
+
+    ```bash
+    bun run countTokens
+    ```
+
+- Grounding using Google Search (Preview)を試すコード
+
+    ```bash
+    bun run generateContentWithGoogleSearchGrounding
+    ```
+
+- Vertex AI検索でグラウンディングを行うサンプルコード
+
+    ```bash
+    bun run generateContentWithVertexAISearchGrounding
+    ```

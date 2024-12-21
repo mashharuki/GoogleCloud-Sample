@@ -7,7 +7,15 @@
     "streamGenerateContent": "bun run ./src/streamGenerateContent.ts",
     "generateContent": "bun run ./src/generateContent.ts",
     "streamChat": "bun run ./src/streamChat.ts",
-    "chat": "bun run ./src/chat.ts"
+    "chat": "bun run ./src/chat.ts",
+    "multiPartContent": "bun run ./src/multiPartContent.ts",
+    "multiPartContentImageString": "bun run ./src/multiPartContentImageString.ts",
+    "multiPartContentVideo": "bun run ./src/multiPartContentVideo.ts",
+    "functionCallingChat": "bun run ./src/functionCallingChat.ts",
+    "functionCallingGenerateContentStream": "bun run ./src/functionCallingGenerateContentStream.ts",
+    "countTokens": "bun run ./src/countTokens.ts",
+    "generateContentWithGoogleSearchGrounding": "bun run ./src/generateContentWithGoogleSearchGrounding.ts",
+    "generateContentWithVertexAISearchGrounding": "bun run ./src/generateContentWithVertexAISearchGrounding.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
