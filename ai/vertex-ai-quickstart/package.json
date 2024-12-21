@@ -1,0 +1,21 @@
+{
+  "name": "vertex-ai-quickstart",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run ./src/index.ts",
+    "streamGenerateContent": "bun run ./src/streamGenerateContent.ts",
+    "generateContent": "bun run ./src/generateContent.ts",
+    "streamChat": "bun run ./src/streamChat.ts",
+    "chat": "bun run ./src/chat.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@google-cloud/vertexai": "^1.9.2"
+  }
+}
