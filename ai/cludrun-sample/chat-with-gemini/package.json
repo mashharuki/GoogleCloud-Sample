@@ -1,0 +1,30 @@
+{
+  "name": "chat-with-gemini",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+      "start": "node app.js",
+      "nodemon": "nodemon app.js",
+      "cssdev": "npx tailwindcss -i ./input.css -o ./public/output.css --watch",
+      "tailwind": "npx tailwindcss -i ./input.css -o ./public/output.css",
+      "dev": "npm run tailwind && npm run nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+      "@google-cloud/connect-firestore": "^3.0.0",
+      "@google-cloud/firestore": "^7.5.0",
+      "@google-cloud/vertexai": "^0.4.0",
+      "axios": "^1.6.8",
+      "express": "^4.18.2",
+      "express-session": "^1.18.0",
+      "express-ws": "^5.0.2",
+      "htmx.org": "^1.9.10"
+  },
+  "devDependencies": {
+      "nodemon": "^3.1.0",
+      "tailwindcss": "^3.4.1"
+  }
+}
