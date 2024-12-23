@@ -42,6 +42,12 @@
     docker run -p 3000:3000 <imageid>
     ```
 
+    イメージIDは以下で確認
+
+    ```bash
+    docker image ls
+    ```
+
 - Dockerコンテナを停止
 
     ```bash
