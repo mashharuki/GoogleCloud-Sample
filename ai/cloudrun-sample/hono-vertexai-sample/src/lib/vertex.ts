@@ -84,6 +84,8 @@ export async function generateContent() {
     const result = await generativeModel.generateContent(request);
     const response = result.response;
     console.log('Response: ', JSON.stringify(response));
+
+    return JSON.stringify(response)
 };
 
 /**
@@ -100,6 +102,8 @@ export async function streamChat() {
     }
     const aggregatedResponse = await result.response;
     console.log('Aggregated response: ', JSON.stringify(aggregatedResponse));
+
+    return JSON.stringify(aggregatedResponse);
 }
 
 /**
@@ -113,6 +117,8 @@ export async function sendChat() {
     // 結果を取り出す。
     const response = result.response;
     console.log('response: ', JSON.stringify(response));
+
+    return JSON.stringify(response);
 }
   
 /**
@@ -142,6 +148,8 @@ export async function multiPartContent() {
     }
     const aggregatedResponse = await streamingResult.response;
     console.log(aggregatedResponse.candidates![0].content);
+
+    return JSON.stringify(aggregatedResponse)
 }
 
 /**
@@ -160,6 +168,8 @@ export async function multiPartContentImageString() {
     const streamingResult = await generativeVisionModel.generateContentStream(request);
     const contentResponse = await streamingResult.response;
     console.log(contentResponse.candidates![0].content.parts[0].text);
+
+    return JSON.stringify(contentResponse)
 }
 
 /**
@@ -179,6 +189,8 @@ export async function multiPartContentVideo() {
     }
     const aggregatedResponse = await streamingResult.response;
     console.log(aggregatedResponse.candidates![0].content);
+
+    return JSON.stringify(aggregatedResponse)
 }
 
 
@@ -247,6 +259,8 @@ export async function functionCallingChat() {
     // provided above
     const response2 = await streamingResult2.response;
     console.log("second aggregated response: ", JSON.stringify(response2));
+
+    return JSON.stringify(response2)
 }
 
 /**
@@ -266,6 +280,8 @@ export async function functionCallingGenerateContentStream() {
     for await (const item of streamingResult.stream) {
       console.log(item.candidates![0]);
     }
+
+    return JSON.stringify(streamingResult)
 }
   
 /**
@@ -277,6 +293,8 @@ export async function countTokens() {
       };
     const response = await generativeModel.countTokens(request);
     console.log('count tokens response: ', JSON.stringify(response));
+
+    return JSON.stringify(response);
 }
 
 /**

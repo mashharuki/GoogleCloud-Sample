@@ -28,6 +28,14 @@
     curl -XPOST "http://localhost:3000/streamGenerateContent"
     ```
 
+    ```bash
+    curl -XPOST "http://localhost:3000/countTokens"
+    ```
+
+    ```bash
+    curl -XPOST "http://localhost:3000/streamChat"
+    ```
+
 - Dockerコンテナをビルド
 
     `hono-vertexai-sample`という名前で`latest`をタグ付け
@@ -74,6 +82,14 @@
 
     ```bash
     gcloud iam service-accounts create honoSampleAccount
+    ```
+
+- vertex AIを使うための権限を付与する。
+
+    ```bash
+    gcloud projects add-iam-policy-binding lyrical-art-273306 \
+    --member serviceAccount:honoSampleAccount@lyrical-art-273306.iam.gserviceaccount.com \
+    --role=roles/aiplatform.user
     ```
 
 - CloudRunにAPIをデプロイする。

@@ -1,0 +1,69 @@
+# @baseUrl = http://localhost:3000
+# ここは各自デプロイした結果によって異なります。
+@baseUrl = <ここは各自で変わるよ>
+
+### GET /
+GET {{baseUrl}}/
+
+### GET /health
+GET {{baseUrl}}/health
+
+### POST /streamGenerateContent
+POST {{baseUrl}}/streamGenerateContent
+Content-Type: application/json
+
+{}
+
+### POST /generateContent
+POST {{baseUrl}}/generateContent
+Content-Type: application/json
+
+{}
+
+### POST /streamChat
+POST {{baseUrl}}/streamChat
+Content-Type: application/json
+
+{}
+
+### POST /sendChat
+POST {{baseUrl}}/sendChat
+Content-Type: application/json
+
+{}
+
+### POST /multiPartContent
+POST {{baseUrl}}/multiPartContent
+Content-Type: application/json
+
+{}
+
+### POST /multiPartContentImageString
+POST {{baseUrl}}/multiPartContentImageString
+Content-Type: application/json
+
+{}
+
+### POST /multiPartContentVideo
+POST {{baseUrl}}/multiPartContentVideo
+Content-Type: application/json
+
+{}
+
+### POST /functionCallingChat
+POST {{baseUrl}}/functionCallingChat
+Content-Type: application/json
+
+{}
+
+### POST /functionCallingGenerateContentStream
+POST {{baseUrl}}/functionCallingGenerateContentStream
+Content-Type: application/json
+
+{}
+
+### POST /countTokens
+POST {{baseUrl}}/countTokens
+Content-Type: application/json
+
+{}
