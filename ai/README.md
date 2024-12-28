@@ -16,3 +16,5 @@
 12. [GitHub - LangChain Js SDK](https://github.com/langchain-ai/langchainjs)
 13. [LangGraph.js - Quickstart](https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/)
 14. [Langchain.sj - Tutorial](https://js.langchain.com/docs/tutorials/)
+15. [Vertex AI Studio](https://console.cloud.google.com/vertex-ai/studio?hl=ja&inv=1&invt=AblVjg&project=lyrical-art-273306)
+16. [Google AI Studio](https://aistudio.google.com/app/prompts/new_chat)

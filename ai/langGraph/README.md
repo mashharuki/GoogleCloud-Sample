@@ -16,3 +16,5 @@
 ### 参考文献
 1. [tavily 公式サイト](https://tavily.com/)
 2. [Note - LangChain の Tavily Serch API を試す](https://note.com/npaka/n/n9fe8a607c56e)
+3. [Zenn - LangGraphのexamplesからエージェントの作り方を学ぶ](https://zenn.dev/zenkigen_tech/articles/536801e61d0689)
+4. [LangGraphとは？サンプルコードをもとにわかりやすく解説！](https://book.st-hakky.com/data-science/langgraph-intro/)
