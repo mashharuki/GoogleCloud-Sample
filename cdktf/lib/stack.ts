@@ -1,5 +1,5 @@
 import { Construct } from "constructs";
-import { TerraformStack } from "cdktf";
+import { TerraformStack, TerraformOutput } from "cdktf";
 import { GoogleProvider } from "@cdktf/provider-google/lib/provider";
 import { CloudRunService } from "@cdktf/provider-google/lib/cloud-run-service";
 import { DataGoogleServiceAccount } from "@cdktf/provider-google/lib/data-google-service-account";
@@ -42,7 +42,10 @@ export class MyStack extends TerraformStack {
                 spec: {
                     containers: [
                         {
-                            image: config.name,
+                            image: `gcr.io/${config.projectId}/${config.name}:latest`,
+                            ports: [{
+                                containerPort: 3000
+                            }]
                         },
                     ],
                 },
@@ -56,12 +59,12 @@ export class MyStack extends TerraformStack {
         });
     
         // CloudRunに割り当てるポリシー
-        const policy_data = new DataGoogleIamPolicy(this, "datanoauth", {
+        const policy_data = new DataGoogleIamPolicy(this, "HonoSampleAccountIAM", {
             binding: [
               {
                 role: "roles/aiplatform.user",
                 members: [
-                   serviceAccount.accountId
+                   `serviceAccount:${serviceAccount.email}`
                 ],
               },
             ],
@@ -72,6 +75,28 @@ export class MyStack extends TerraformStack {
             project: cloudrunsvcapp.project,
             service: cloudrunsvcapp.name,
             policyData: policy_data.policyData,
+        });
+
+        //////////////////////////////////////////////////////////////////////
+        // 成果物
+        //////////////////////////////////////////////////////////////////////
+
+        // サービスURLの出力
+        new TerraformOutput(this, "service_url", {
+            value: cloudrunsvcapp.status.get(0).url,
+            description: "The URL of the deployed Cloud Run service"
+        });
+
+        // サービス名の出力
+        new TerraformOutput(this, "service_name", {
+            value: cloudrunsvcapp.name,
+            description: "The name of the deployed Cloud Run service"
+        });
+
+        // リージョンの出力
+        new TerraformOutput(this, "region", {
+            value: cloudrunsvcapp.location,
+            description: "The region where the service is deployed"
         });
     }
 }
