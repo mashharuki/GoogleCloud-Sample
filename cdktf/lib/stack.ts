@@ -33,6 +33,25 @@ export class MyStack extends TerraformStack {
             project: config.projectId,
             region: config.region,
         });
+
+        // サービスアカウントの作成
+        const serviceAccount = new DataGoogleServiceAccount(this, "HonoSampleAccount", {
+            accountId: "honoSampleAccount", // サービスアカウント名
+            project: config.projectId,
+        });
+    
+        // CloudRunに割り当てるポリシー
+        const policy_data = new DataGoogleIamPolicy(this, "HonoSampleAccountIAM", {
+            binding: [
+              {
+                role: "roles/run.invoker",
+                members: [
+                   `serviceAccount:${serviceAccount.email}`,
+                   "allUsers" 
+                ],
+              }
+            ],
+        });
   
         // CloudRun リソース
         const cloudrunsvcapp = new CloudRunService(this, "HonoVertexAICloudRun", {
@@ -40,9 +59,10 @@ export class MyStack extends TerraformStack {
             name: config.name,
             template: {
                 spec: {
+                    serviceAccountName: serviceAccount.email, 
                     containers: [
                         {
-                            image: `gcr.io/${config.projectId}/${config.name}:latest`,
+                            image: `us-central1-docker.pkg.dev/${config.projectId}/${config.name}/sample:latest`,
                             ports: [{
                                 containerPort: 3000
                             }]
@@ -50,24 +70,6 @@ export class MyStack extends TerraformStack {
                     ],
                 },
             },
-        });
-
-        // サービスアカウントの作成
-        const serviceAccount = new DataGoogleServiceAccount(this, "HonoSampleAccount", {
-            accountId: "honoSampleAccount", // サービスアカウント名
-            project: config.projectId
-        });
-    
-        // CloudRunに割り当てるポリシー
-        const policy_data = new DataGoogleIamPolicy(this, "HonoSampleAccountIAM", {
-            binding: [
-              {
-                role: "roles/aiplatform.user",
-                members: [
-                   `serviceAccount:${serviceAccount.email}`
-                ],
-              },
-            ],
         });
       
         new CloudRunServiceIamPolicy(this, "runsvciampolicy", {

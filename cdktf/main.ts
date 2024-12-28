@@ -13,7 +13,7 @@ const app = new App();
 new MyStack(app, "cdktf", {
   projectId: PROJECT_ID!,
   region: "us-central1",
-  name: "hono-vertexai-api"
+  name: "hono-vertexai-sample"
 });
 
 app.synth();
