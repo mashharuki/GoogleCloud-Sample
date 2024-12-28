@@ -11,3 +11,8 @@
 7. [Zenn - Google AI Studio & Vertex AI Studio：Gemini API 利用方法の違い](https://zenn.dev/cloud_ace/articles/e5c13b4fdaeb42)
 8. [テキスト生成の方法](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/send-chat-prompts-gemini?hl=ja)
 9. [Vertex AI SDK for Node.js quickstart](https://cloud.google.com/vertex-ai/generative-ai/docs/reference/nodejs/latest#before-you-begin)
+10. [Zenn - LangGraphの基本的な使い方](https://zenn.dev/pharmax/articles/8796b892eed183)
+11. [npm モジュール - @langchain/google-vertexai](https://www.npmjs.com/package/@langchain/google-vertexai)
+12. [GitHub - LangChain Js SDK](https://github.com/langchain-ai/langchainjs)
+13. [LangGraph.js - Quickstart](https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/)
+14. [Langchain.sj - Tutorial](https://js.langchain.com/docs/tutorials/)

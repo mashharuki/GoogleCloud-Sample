@@ -1,0 +1,21 @@
+{
+  "name": "langgraph",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "agents": "bun run ./src/agents.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "dotenv": "^16.4.7"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@langchain/community": "^0.3.20",
+    "@langchain/core": "^0.3.26",
+    "@langchain/langgraph": "^0.2.36",
+    "@langchain/openai": "^0.3.16"
+  }
+}
