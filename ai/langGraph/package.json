@@ -3,7 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "agents": "bun run ./src/agents.ts"
+    "agents": "bun run ./src/agents.ts",
+    "agents2": "bun run ./src/agents2.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
