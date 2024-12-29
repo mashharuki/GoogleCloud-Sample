@@ -18,3 +18,5 @@
 14. [Langchain.sj - Tutorial](https://js.langchain.com/docs/tutorials/)
 15. [Vertex AI Studio](https://console.cloud.google.com/vertex-ai/studio?hl=ja&inv=1&invt=AblVjg&project=lyrical-art-273306)
 16. [Google AI Studio](https://aistudio.google.com/app/prompts/new_chat)
+17. [GitHub - GenAI Docs](https://github.com/google/generative-ai-docs/tree/main)
+18. [LangGraph Tutorial](https://langchain-ai.github.io/langgraphjs/tutorials/)
