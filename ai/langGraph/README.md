@@ -39,6 +39,12 @@
     bun run googleAI
     ```
 
+- VertexAIのAPIを使ったサンプルスクリプト実行
+
+    ```bash
+    bun run vertexAI
+    ```
+
 ### 参考文献
 1. [tavily 公式サイト](https://tavily.com/)
 2. [Note - LangChain の Tavily Serch API を試す](https://note.com/npaka/n/n9fe8a607c56e)

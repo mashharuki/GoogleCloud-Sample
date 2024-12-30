@@ -22,7 +22,7 @@ const project = 'lyrical-art-273306';
 // リージョンを指定
 const location = 'us-central1';
 // モデルの情報を指定する。
-const textModel =  'gemini-1.0-pro';
+const textModel =  'gemini-pro';
 
 
 /**
@@ -30,7 +30,7 @@ const textModel =  'gemini-1.0-pro';
  */
 const main = async() => {
     // Define the tools for the agent to use
-    const tools = [new TavilySearchResults({ maxResults: 3 })];
+    const tools = [new TavilySearchResults({ apiKey: TAVILY_API_KEY ,maxResults: 3 })];
     const toolNode = new ToolNode(tools);
 
     // VertexAIインスタンスを作成。
@@ -42,20 +42,12 @@ const main = async() => {
     // Instantiate Gemini models
     const model = vertexAI.getGenerativeModel({
         model: textModel,
-        // The following parameters are optional
-        // They can also be passed to individual content generation requests
         safetySettings: [{
             category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, 
             threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
         }],
         generationConfig: {
-            maxOutputTokens: 256
-        },
-        systemInstruction: {
-            role: 'system',
-            parts: [{
-                "text": `For example, you are a helpful customer service agent.`
-            }]
+            maxOutputTokens: 2048
         },
     });
 
@@ -81,13 +73,15 @@ const main = async() => {
      * @returns 
      */
     async function callModel(state: typeof MessagesAnnotation.State) {
+        console.log("content:", state.messages[state.messages.length - 1].content.toString())
+
         // AIに推論させる
         const response = await model.generateContent({
             contents: [{
                 role: 'model',
                 parts: [
                     {
-                        text: `${state.messages[0].content.toString()}`
+                        text: `${state.messages[state.messages.length - 1].content.toString()}`
                     }
                 ]
             }]
@@ -95,9 +89,10 @@ const main = async() => {
 
         // Extract the first candidate's content
         const content = response.response.candidates![0].content;
-
         // Create a HumanMessage object
         const message = new HumanMessage(content.parts[0].text as string);
+
+        // console.log("message:", message)
 
         return  { messages: [message] };
     }
@@ -120,9 +115,7 @@ const main = async() => {
     console.log(finalState.messages[finalState.messages.length - 1].content);
 
     const nextState = await app.invoke({
-        // Including the messages from the previous run gives the LLM context.
-        // This way it knows we're asking about the weather in NY
-        messages: [...finalState.messages, new HumanMessage("what about Amazon Aurora DSQL?")],
+        messages: [...finalState.messages, new HumanMessage("Please tell me about Amazon Aurora DSQL?")],
     });
 
     console.log(nextState.messages[nextState.messages.length - 1].content);
