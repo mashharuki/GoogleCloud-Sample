@@ -20,3 +20,4 @@
 16. [Google AI Studio](https://aistudio.google.com/app/prompts/new_chat)
 17. [GitHub - GenAI Docs](https://github.com/google/generative-ai-docs/tree/main)
 18. [LangGraph Tutorial](https://langchain-ai.github.io/langgraphjs/tutorials/)
+19. [LangChain on Vertex AI ](https://cloud.google.com/vertex-ai/generative-ai/docs/reasoning-engine/overview?hl=ja)

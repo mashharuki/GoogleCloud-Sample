@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const {
-    GEMINI_API_KEY
+  GEMINI_API_KEY
 } = process.env;
 
 /**
