@@ -21,7 +21,7 @@ const main = async () => {
  
   // Execute blockchain operations using natural language
   const result = await agent.invoke({
-    input: "Swap 1 USDC for ETH on Ethereum Holesky",
+    input: "Swap 1 ETH for USDC Ethereum sepolia  (chain id: 11155111)",
   });
   console.log(result);
 };

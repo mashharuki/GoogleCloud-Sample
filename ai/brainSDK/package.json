@@ -5,7 +5,8 @@
   "scripts": {
     "getStarted": "bun run ./src/getStarted.ts",
     "firstAgent": "bun run ./src/firstAgent.ts",
-    "erc20Deployer": "bun run ./src/erc20Deployer.ts"
+    "erc20Deployer": "bun run ./src/erc20Deployer.ts",
+    "cdpAgent": "bun run ./src/cdpAgent.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -19,6 +20,7 @@
     "@google/generative-ai": "^0.21.0",
     "@langchain/core": "^0.3.26",
     "@langchain/google-genai": "^0.1.6",
-    "@langchain/openai": "^0.3.16"
+    "@langchain/openai": "^0.3.16",
+    "viem": "^2.21.60"
   }
 }

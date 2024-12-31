@@ -57,8 +57,14 @@
     bun run erc20Deployer
     ```
 
-    ```bash
+    実際にデプロイしたERC20トークンです！！
 
+    [Sepolia - Doge AI](https://sepolia.etherscan.io/address/0xe5cb0401f97532aa9b0d4804cffdcab482062343)
+
+- CDP 用のAgentを試すスクリプト
+
+    ```bash
+    bun run cdpAgent
     ```
 
 ### 参考文献
