@@ -62,7 +62,7 @@ const main = async () => {
  
     // Execute blockchain operations using natural language
     const result = await agent.invoke({
-        input: "Send 1 ETH to 0x1295BDc0C102EB105dC0198fdC193588fe66A1e4 on Ethereum Holesky",
+        input: "Send 1 ETH to 0x1295BDc0C102EB105dC0198fdC193588fe66A1e4 on Ethereum sepolia  (chain id: 11155111)",
     });
     console.log(result);
 };

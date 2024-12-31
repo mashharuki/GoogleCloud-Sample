@@ -3,7 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "firstAgent": "bun run ./src/firstAgent.ts"
+    "getStarted": "bun run ./src/getStarted.ts",
+    "firstAgent": "bun run ./src/firstAgent.ts",
+    "erc20Deployer": "bun run ./src/erc20Deployer.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
