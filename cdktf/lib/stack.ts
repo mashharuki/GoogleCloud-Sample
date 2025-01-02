@@ -5,6 +5,18 @@ import { DataGoogleServiceAccount } from "@cdktf/provider-google/lib/data-google
 import { GoogleProvider } from "@cdktf/provider-google/lib/provider";
 import { TerraformOutput, TerraformStack } from "cdktf";
 import { Construct } from "constructs";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+const {
+  PROJECT_ID,
+  REGION,
+  GEMINI_API_KEY,
+  OPENAI_API_KEY,
+  TAVILY_API_KEY
+} = process.env;
+
 
 export interface MyStackConfig {
     projectId: string;
@@ -66,7 +78,29 @@ export class MyStack extends TerraformStack {
                             ports: [{
                                 containerPort: 3000
                             }],
-                            env: [],
+                            // 環境変数の設定
+                            env: [ 
+                                {
+                                    name: "PROJECT_ID",
+                                    value: PROJECT_ID
+                                },
+                                {
+                                    name: "REGION",
+                                    value: REGION
+                                },
+                                {
+                                    name: "GEMINI_API_KEY",
+                                    value: GEMINI_API_KEY
+                                },
+                                {
+                                    name: "OPENAI_API_KEY",
+                                    value: OPENAI_API_KEY
+                                },
+                                {
+                                    name: "TAVILY_API_KEY",
+                                    value: TAVILY_API_KEY
+                                }
+                            ],
                         },
                     ],
                 },

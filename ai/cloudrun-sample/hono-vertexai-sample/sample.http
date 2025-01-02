@@ -1,6 +1,6 @@
 # @baseUrl = http://localhost:3000
 # ここは各自デプロイした結果によって異なります。
-@baseUrl = <ここは各自で変わるよ>
+@baseUrl = <各々デプロイしたURL>
 
 ### GET /
 GET {{baseUrl}}/
@@ -64,6 +64,31 @@ Content-Type: application/json
 
 ### POST /countTokens
 POST {{baseUrl}}/countTokens
+Content-Type: application/json
+
+{}
+
+
+### POST /langChain
+POST {{baseUrl}}/langChain
+Content-Type: application/json
+
+{}
+
+### POST /agentOpenAI
+POST {{baseUrl}}/agentOpenAI
+Content-Type: application/json
+
+{}
+
+### POST /agentGemini
+POST {{baseUrl}}/agentGemini
+Content-Type: application/json
+
+{}
+
+### POST /agentVertexAI
+POST {{baseUrl}}/agentVertexAI
 Content-Type: application/json
 
 {}
