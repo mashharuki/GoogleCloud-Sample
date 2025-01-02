@@ -1,10 +1,10 @@
-import { Construct } from "constructs";
-import { TerraformStack, TerraformOutput } from "cdktf";
-import { GoogleProvider } from "@cdktf/provider-google/lib/provider";
 import { CloudRunService } from "@cdktf/provider-google/lib/cloud-run-service";
-import { DataGoogleServiceAccount } from "@cdktf/provider-google/lib/data-google-service-account";
 import { CloudRunServiceIamPolicy } from "@cdktf/provider-google/lib/cloud-run-service-iam-policy";
 import { DataGoogleIamPolicy } from "@cdktf/provider-google/lib/data-google-iam-policy";
+import { DataGoogleServiceAccount } from "@cdktf/provider-google/lib/data-google-service-account";
+import { GoogleProvider } from "@cdktf/provider-google/lib/provider";
+import { TerraformOutput, TerraformStack } from "cdktf";
+import { Construct } from "constructs";
 
 export interface MyStackConfig {
     projectId: string;
@@ -65,7 +65,8 @@ export class MyStack extends TerraformStack {
                             image: `us-central1-docker.pkg.dev/${config.projectId}/${config.name}/sample:latest`,
                             ports: [{
                                 containerPort: 3000
-                            }]
+                            }],
+                            env: [],
                         },
                     ],
                 },
