@@ -4,115 +4,118 @@
 
 - インストール
 
-    ```bash
-    bun install
-    ```
+  ```bash
+  bun install
+  ```
 
 - ローカルで起動
 
-    ```bash
-    bun run dev
-    ```
+  ```bash
+  bun run dev
+  ```
 
-    以下でAPIを呼び出す。
+  以下で API を呼び出す。
 
-    ```bash
-    curl -XGET "http://localhost:3000"
-    ```
+  `sample.http`ファイルも参照してください。
 
-    ```bash
-    curl -XGET "http://localhost:3000/health"
-    ``` 
+  ```bash
+  curl -XGET "http://localhost:3000"
+  ```
 
-    ```bash
-    curl -XPOST "http://localhost:3000/streamGenerateContent"
-    ```
+  ```bash
+  curl -XGET "http://localhost:3000/health"
+  ```
 
-    ```bash
-    curl -XPOST "http://localhost:3000/countTokens"
-    ```
+  ```bash
+  curl -XPOST "http://localhost:3000/streamGenerateContent"
+  ```
 
-    ```bash
-    curl -XPOST "http://localhost:3000/streamChat"
-    ```
+  ```bash
+  curl -XPOST "http://localhost:3000/countTokens"
+  ```
 
-- Dockerコンテナをビルド
+  ```bash
+  curl -XPOST "http://localhost:3000/streamChat"
+  ```
 
-    `hono-vertexai-sample`という名前で`latest`をタグ付け
+- Docker コンテナをビルド
 
-    ```bash 
-    docker build . -t hono-vertexai-sample:latest
-    ```
+  `hono-vertexai-sample`という名前で`latest`をタグ付け
 
-- Dockerコンテナを起動
+  ```bash
+  docker build . -t hono-vertexai-sample:latest
+  ```
 
-    ```bash
-    docker run -p 3000:3000 <imageid>
-    ```
+- Docker コンテナを起動
 
-    イメージIDは以下で確認
+  ```bash
+  docker run -p 3000:3000 <imageid>
+  ```
 
-    ```bash
-    docker image ls
-    ```
+  イメージ ID は以下で確認
 
-- Dockerコンテナを停止
+  ```bash
+  docker image ls
+  ```
 
-    ```bash
-    docker stop <imageid>
-    ```
+- Docker コンテナを停止
 
-## 動かし方(Cloud Run編)
+  ```bash
+  docker stop <imageid>
+  ```
 
-まず、ローカルでDockerのビルド＆起動ができることを確認すること！
+## 動かし方(Cloud Run 編)
+
+まず、ローカルで Docker のビルド＆起動ができることを確認すること！
 
 - コンテナイメージ用のリポジトリを作成する。
 
-    ```bash
-    gcloud artifacts repositories create hono-vertexai-sample --repository-format docker --location us-central1
-    ```
+  ```bash
+  gcloud artifacts repositories create hono-vertexai-sample --repository-format docker --location us-central1
+  ```
 
 - コンテナイメージをプッシュする。
 
-    ```bash
-    gcloud builds submit --tag us-central1-docker.pkg.dev/lyrical-art-273306/hono-vertexai-sample/sample
-    ```
+  ```bash
+  gcloud builds submit --tag us-central1-docker.pkg.dev/lyrical-art-273306/hono-vertexai-sample/sample
+  ```
 
 - サービスアカウントを作成する。
 
-    ```bash
-    gcloud iam service-accounts create honoSampleAccount
-    ```
+  ```bash
+  gcloud iam service-accounts create honoSampleAccount
+  ```
 
-- vertex AIを使うための権限を付与する。
+- vertex AI を使うための権限を付与する。
 
-    ```bash
-    gcloud projects add-iam-policy-binding lyrical-art-273306 \
-    --member serviceAccount:honoSampleAccount@lyrical-art-273306.iam.gserviceaccount.com \
-    --role=roles/aiplatform.user
-    ```
+  ```bash
+  gcloud projects add-iam-policy-binding lyrical-art-273306 \
+  --member serviceAccount:honoSampleAccount@lyrical-art-273306.iam.gserviceaccount.com \
+  --role=roles/aiplatform.user
+  ```
 
-- CloudRunにAPIをデプロイする。
+- CloudRun に API をデプロイする。
 
-    ```bash 
-    gcloud run deploy hono-vertexai-sample --service-account honoSampleAccount@lyrical-art-273306.iam.gserviceaccount.com  --image us-central1-docker.pkg.dev/lyrical-art-273306/hono-vertexai-sample/sample
-    ```
+  ```bash
+  gcloud run deploy hono-vertexai-sample --service-account honoSampleAccount@lyrical-art-273306.iam.gserviceaccount.com  --image us-central1-docker.pkg.dev/lyrical-art-273306/hono-vertexai-sample/sample
+  ```
 
-    上手く行けばAPIがデプロイされるので、以下のようにAPIを呼び出してみる。
+  上手く行けば API がデプロイされるので、以下のように API を呼び出してみる。
 
-    ```bash
-    curl -XGET "<出力されたエンドポイント>"
-    ```
+  ```bash
+  curl -XGET "<出力されたエンドポイント>"
+  ```
 
-    `Hello Hono!`と返ってくればOK!!
+  `Hello Hono!`と返ってくれば OK!!
 
-- Cloud RunでデプロイしたAPIを停止する。
+- Cloud Run でデプロイした API を停止する。
 
-    ```bash
-    gcloud run services delete hono-vertexai-sample
-    ```
+  ```bash
+  gcloud run services delete hono-vertexai-sample
+  ```
 
 ### 参考文献
-1. [Zenn - DockerでBunを使ってサーバーを立ててみた](https://zenn.dev/nanasi_1/articles/6375c0fbaa3b8d)
-2. [Zenn - BunとHono](https://zenn.dev/yusukebe/articles/efa173ab4b9360)
+
+1. [Zenn - Docker で Bun を使ってサーバーを立ててみた](https://zenn.dev/nanasi_1/articles/6375c0fbaa3b8d)
+2. [Zenn - Bun と Hono](https://zenn.dev/yusukebe/articles/efa173ab4b9360)
 3. [Containerize a Bun application with Docker](https://bun.sh/guides/ecosystem/docker)
