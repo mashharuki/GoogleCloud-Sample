@@ -10,8 +10,6 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const {
-  PROJECT_ID,
-  REGION,
   GEMINI_API_KEY,
   OPENAI_API_KEY,
   TAVILY_API_KEY
@@ -21,7 +19,8 @@ const {
 export interface MyStackConfig {
     projectId: string;
     region: string;
-    name: string;
+    imageRepoName: string;
+    imageName: string;
 }
 
 /**
@@ -68,13 +67,13 @@ export class MyStack extends TerraformStack {
         // CloudRun リソース
         const cloudrunsvcapp = new CloudRunService(this, "HonoVertexAICloudRun", {
             location: config.region,
-            name: config.name,
+            name: config.imageName,
             template: {
                 spec: {
                     serviceAccountName: serviceAccount.email, 
                     containers: [
                         {
-                            image: `us-central1-docker.pkg.dev/${config.projectId}/${config.name}/sample:latest`,
+                            image: `${config.region}-docker.pkg.dev/${config.projectId}/${config.imageRepoName}/${config.imageName}:latest`,
                             ports: [{
                                 containerPort: 3000
                             }],
@@ -82,11 +81,11 @@ export class MyStack extends TerraformStack {
                             env: [ 
                                 {
                                     name: "PROJECT_ID",
-                                    value: PROJECT_ID
+                                    value: config.projectId
                                 },
                                 {
                                     name: "REGION",
-                                    value: REGION
+                                    value: config.region
                                 },
                                 {
                                     name: "GEMINI_API_KEY",

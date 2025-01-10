@@ -43,7 +43,7 @@
   `hono-vertexai-sample`という名前で`latest`をタグ付け
 
   ```bash
-  docker build . -t hono-vertexai-sample:latest
+  docker build . -t hono-vertexai-image:latest
   ```
 
 - Docker コンテナを起動
@@ -71,13 +71,13 @@
 - コンテナイメージ用のリポジトリを作成する。
 
   ```bash
-  gcloud artifacts repositories create hono-vertexai-sample --repository-format docker --location us-central1
+  gcloud artifacts repositories create hono-vertexai-sample-repo --repository-format docker --location us-central1
   ```
 
 - コンテナイメージをプッシュする。
 
   ```bash
-  gcloud builds submit --tag us-central1-docker.pkg.dev/lyrical-art-273306/hono-vertexai-sample/sample
+  gcloud builds submit --tag us-central1-docker.pkg.dev/lyrical-art-273306/hono-vertexai-sample-repo/hono-vertexai-image
   ```
 
 - サービスアカウントを作成する。

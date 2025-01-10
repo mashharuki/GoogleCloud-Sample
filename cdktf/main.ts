@@ -11,10 +11,11 @@ const {
 
 const app = new App();
 
-new MyStack(app, "cdktf", {
+new MyStack(app, "hono-vertexai-sample-api", {
   projectId: PROJECT_ID!,
   region: REGION!,
-  name: "hono-vertexai-sample"
+  imageRepoName: "hono-vertexai-sample-repo",
+  imageName: "hono-vertexai-image"
 });
 
 app.synth();
