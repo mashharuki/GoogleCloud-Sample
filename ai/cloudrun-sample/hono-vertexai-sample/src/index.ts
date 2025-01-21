@@ -268,7 +268,7 @@ app.post('/agentVertexAI', async(c)=> {
   console.log(finalState.messages[finalState.messages.length - 1].content);
 
   const nextState = await app.invoke({
-    messages: [...finalState.messages, new HumanMessage("Please tell me about Amazon Aurora DSQL?")],
+    messages: [...finalState.messages, new HumanMessage("Please tell me aboutn current trends of Web3")],
   });
 
   console.log(nextState.messages[nextState.messages.length - 1].content);
