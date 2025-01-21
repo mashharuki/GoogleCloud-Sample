@@ -1,0 +1,25 @@
+{
+  "name": "multiaiagent",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "simpleInvoke": "bun run ./src/simpleInvoke.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/d3": "^7.4.3",
+    "dotenv": "^16.4.7"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@langchain/community": "^0.3.26",
+    "@langchain/core": "^0.3.32",
+    "@langchain/langgraph": "^0.2.41",
+    "@langchain/openai": "^0.3.17",
+    "canvas": "^3.0.1",
+    "d3": "^7.9.0",
+    "tslab": "^1.0.22"
+  }
+}
