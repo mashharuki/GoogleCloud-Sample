@@ -3,7 +3,7 @@ import { MessagesAnnotation, StateGraph } from '@langchain/langgraph';
 import { Hono } from 'hono';
 import { model } from './lib/langChain';
 import { createGeminiAIAgent, createOpenAIAIAgent, createTools, createVertexAIAIAgent } from './lib/langGraph';
-import { countTokens, functionCallingChat, functionCallingGenerateContentStream, generateContent, multiPartContent, multiPartContentImageString, multiPartContentVideo, sendChat, streamChat, streamGenerateContent } from './lib/vertex';
+import { countTokens, functionCallingChat, functionCallingGenerateContentStream, generateContent, multiPartContent, multiPartContentImageString, multiPartContentVideo, sendChat, shouldContinue, streamChat, streamGenerateContent } from './lib/vertex';
 
 const app = new Hono()
 
@@ -207,22 +207,8 @@ app.post('/agentVertexAI', async(c)=> {
   const toolNode = createTools();
   // GeminiのAI agent用のインスタンスを作成する。
   const agent = createVertexAIAIAgent();
-
-  /**
-   * Define the function that determines whether to continue or not
-   * @param param0 
-   * @returns 
-   */
-  function shouldContinue({ messages }: typeof MessagesAnnotation.State) {
-    const lastMessage = messages[messages.length - 1];
-
-    // If the LLM makes a tool call, then we route to the "tools" node
-    if (lastMessage.additional_kwargs.tool_calls) {
-        return "tools";
-    }
-    // Otherwise, we stop (reply to the user) using the special "__end__" node
-    return "__end__";
-  }
+  // 2つ目のAI Agentを用意する。
+  const agent2 = createVertexAIAIAgent();
 
   /**
    * Define the function that calls the model
@@ -249,8 +235,34 @@ app.post('/agentVertexAI', async(c)=> {
     // console.log("message:", message)
     return  { messages: [message] };
   }
+  
+  /**
+   * Define the function that calls the model
+   * @param state 
+   * @returns 
+   */
+  async function callModel2(state: typeof MessagesAnnotation.State) {
+    // AIに推論させる
+    const response = await agent2.generateContent({
+      contents: [{
+        role: 'model',
+        parts: [
+          {
+            text: `${state.messages[state.messages.length - 1].content.toString()}`
+          }
+        ]
+      }]
+    });
 
-  // ワークフローを構築する。
+    // Extract the first candidate's content
+    const content = response.response.candidates![0].content;
+    // Create a HumanMessage object
+    const message = new HumanMessage(content.parts[0].text as string);
+    // console.log("message:", message)
+    return  { messages: [message] };
+  }
+
+  // 最初のAI Agent用のワークフローを構築する。
   const workflow = new StateGraph(MessagesAnnotation)
     .addNode("agent", callModel)
     .addEdge("__start__", "agent") // __start__ is a special name for the entrypoint
@@ -261,14 +273,25 @@ app.post('/agentVertexAI', async(c)=> {
   // Finally, we compile it into a LangChain Runnable.
   const app = workflow.compile();
 
+  // ２つ目のAI Agent用のワークフローを構築する。
+  const workflow2 = new StateGraph(MessagesAnnotation)
+    .addNode("agent", callModel2)
+    .addEdge("__start__", "agent") // __start__ is a special name for the entrypoint
+    .addNode("tools", toolNode)
+    .addEdge("tools", "agent")
+    .addConditionalEdges("agent", shouldContinue);
+
+  // Finally, we compile it into a LangChain Runnable.
+  const app2 = workflow2.compile();
+
   // Use the agent
   const finalState = await app.invoke({
-    messages: [new HumanMessage("what is AWS?")],
+    messages: [new HumanMessage("Please tell me aboutn current trends of Web3")],
   });
   console.log(finalState.messages[finalState.messages.length - 1].content);
 
-  const nextState = await app.invoke({
-    messages: [...finalState.messages, new HumanMessage("Please tell me aboutn current trends of Web3")],
+  const nextState = await app2.invoke({
+    messages: [...finalState.messages, new HumanMessage(`Could you share your thoughts on these trends? Web3 Trends: ${finalState.messages[finalState.messages.length - 1].content}`)],
   });
 
   console.log(nextState.messages[nextState.messages.length - 1].content);

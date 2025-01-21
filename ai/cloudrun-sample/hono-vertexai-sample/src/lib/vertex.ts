@@ -4,6 +4,7 @@ import {
     HarmCategory,
     VertexAI
 } from '@google-cloud/vertexai';
+import { MessagesAnnotation } from '@langchain/langgraph';
 
 // プロジェクトIDを設定
 const project = 'lyrical-art-273306';
@@ -338,7 +339,10 @@ export async function generateContentWithVertexAISearchGrounding() {
       model: textModel,
       // The following parameters are optional
       // They can also be passed to individual content generation requests
-      safetySettings: [{category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE}],
+      safetySettings: [{
+        category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, 
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
+    }],
       generationConfig: {maxOutputTokens: 256},
     });
     // Vertex AI検索の設定
@@ -357,4 +361,20 @@ export async function generateContentWithVertexAISearchGrounding() {
     const response = result.response;
     const groundingMetadata = response.candidates![0].groundingMetadata;
     console.log("Grounding metadata is: ", JSON.stringify(groundingMetadata));
+}
+
+/**
+ * Define the function that determines whether to continue or not
+ * @param param0 
+ * @returns 
+ */
+export function shouldContinue({ messages }: typeof MessagesAnnotation.State) {
+    const lastMessage = messages[messages.length - 1];
+
+    // If the LLM makes a tool call, then we route to the "tools" node
+    if (lastMessage.additional_kwargs.tool_calls) {
+        return "tools";
+    }
+    // Otherwise, we stop (reply to the user) using the special "__end__" node
+    return "__end__";
 }
