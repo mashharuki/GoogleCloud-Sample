@@ -45,3 +45,4 @@ tar -xf google-cloud-cli-477.0.0-linux-x86_64.tar.gz
 29. [Enhance Your Firebase Studio Workflow with Gemini CLI](https://firebase.blog/posts/2025/07/firebase-studio-gemini-cli/)
 30. [Firebase App Hosting](https://firebase.google.com/docs/app-hosting?hl=ja)
 31. [Skills Boost](https://www.cloudskillsboost.google/)
+32. [Firebase を使用してサーバーレス ウェブアプリを構築する](https://www.cloudskillsboost.google/focuses/8391?catalog_rank=%7B%22rank%22%3A2%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&parent=catalog&search_id=50565854)
