@@ -26,6 +26,23 @@ gcloud spanner instances list
 nano pets-db-schema.sql
 ```
 
+内容は以下
+
+```sql
+CREATE TABLE Owners (
+     OwnerID STRING(36) NOT NULL, 
+     OwnerName STRING(MAX) NOT NULL
+) PRIMARY KEY (OwnerID);
+
+CREATE TABLE Pets (
+     PetID STRING(36) NOT NULL, 
+     OwnerID STRING(36) NOT NULL, 
+     PetType STRING(MAX) NOT NULL,
+     PetName STRING(MAX) NOT NULL,
+     Breed STRING(MAX) NOT NULL,
+) PRIMARY KEY (PetID);
+```
+
 ## 参考文献
 - [高いけどスゴイ！『Cloud Spanner』を徹底解説](https://cloud-ace.jp/column/detail387/)
 - [Cloud Spanner - 実質的に無制限のスケーリングを備えた、常時稼働のデータベース](https://cloud.google.com/spanner?hl=ja)
